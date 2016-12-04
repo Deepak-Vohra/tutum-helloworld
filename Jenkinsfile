@@ -3,7 +3,7 @@ node("docker") {
         
        
         
-        git url: "https://github.com/dvohra/docker-node-server.git", credentialsId: 'dvohra-github'
+        git url: "https://github.com/dvohra/tutum-helloworld.git", credentialsId: 'dvohra-github'
     
         sh "git rev-parse HEAD > .git/commit-id"
         def commit_id = readFile('.git/commit-id').trim()
@@ -12,7 +12,7 @@ node("docker") {
         stage "build"
         sh "sudo service docker start"
         sh "sudo service docker status"
-        def app = docker.build "dvohra/node-server"
+        def app = docker.build "dvohra/tutum-helloworld"
     
         stage "publish"
         app.push 'latest'
